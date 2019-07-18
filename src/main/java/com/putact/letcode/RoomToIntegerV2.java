@@ -47,10 +47,10 @@ import java.util.Map;
  */
 
 
-public class RoomToInteger {
+public class RoomToIntegerV2 {
     Map<Integer, String> room = new HashMap<>(8);
 
-    public RoomToInteger() {
+    public RoomToIntegerV2() {
         room.put(1, "I");
         room.put(5, "V");
         room.put(10, "X");
@@ -67,82 +67,36 @@ public class RoomToInteger {
             return result.append("the number is bigger than 10000").toString();
         }
 
-        if (num >= 1000) {
-            int re=num/1000;
-            for (int i=1;i<=re;i++){
-                result.append(room.get(1000));
-            }
-            num %= 1000;
-        }
-
-        if (num >= 100) {
-            int re = num / 100;
-            if (re <= 3) {
-               for (int i=1;i<=re;i++){
-                  result.append(room.get(100));
-               }
-            } else if (re == 4) {
-                result.append(room.get(100));
-                result.append(room.get(500));
-            } else if (  re>=5 &&re <= 8) {
-                result.append(room.get(500));
-
-                for (int i=1;i<=re-5;i++){
-                    result.append(room.get(100));
-                }
-
-            } else if (re == 9) {
-                result.append(room.get(100));
-                result.append(room.get(1000));
-            }
-            num %= 100;
-        }
-
-        if (num >= 10) {
-            int re = num / 10;
+        int count =1;
+        while (num>0){
+            int re = num%10;
             if (re <= 3) {
                 for (int i=1;i<=re;i++){
-                    result.append(room.get(10));
+                    result.append(room.get(1*count));
                 }
             } else if (re == 4) {
-                result.append(room.get(10));
-                result.append(room.get(50));
+                result.append(room.get(5*count));
+                result.append(room.get(1*count));
+
             } else if (re <= 8) {
-                result.append(room.get(50));
                 for (int i=1;i<=re-5;i++){
-                    result.append(room.get(10));
+                    result.append(room.get(1*count));
                 }
+                result.append(room.get(5*count));
+
             } else if (re == 9) {
-                result.append(room.get(10));
-                result.append(room.get(100));
-            }
-            num %= 10;
-        }
-        if (num >= 1) {
-            if (num <= 3) {
-                for (int i=1;i<=num;i++){
-                    result.append(room.get(1));
-                }
-            } else if (num == 4) {
-                result.append(room.get(1));
-                result.append(room.get(5));
-            } else if (num <= 8) {
-                result.append(room.get(5));
-                for (int i=1;i<=num-5;i++){
-                    result.append(room.get(1));
-                }
-            } else if (num == 9) {
-                result.append(room.get(1));
-                result.append(room.get(10));
+                result.append(room.get(10*count));
+                result.append(room.get(1*count));
             }
 
+            num=num/10;
+            count=count*10;
         }
 
-
-        return result.toString();
+        return result.reverse().toString();
     }
 
     public static void main(String args[]){
-        System.out.println(new RoomToInteger().intToRoman(1002));
+        System.out.println(new RoomToIntegerV2().intToRoman(1002));
     }
 }
