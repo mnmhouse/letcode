@@ -48,7 +48,7 @@ import java.util.Map;
 
 
 public class RoomToInteger {
-    Map<Integer, String> room = new HashMap<>(8);
+    Map<Integer, String> room = new HashMap<Integer, String>(8);
 
     public RoomToInteger() {
         room.put(1, "I");
