@@ -7,4 +7,21 @@ public class BuzzFeed {
             System.out.println(buzz.getBuzzString(i));
         }
     }
+
+    public static String getResult(int i) {
+
+        if (i%3==0 && i%5==0){
+            return "buzzfeed";
+        }
+
+        if (i%3==0){
+            return "buzz";
+        }
+
+        if (i%5==0){
+            return "feed";
+        }
+
+        return ""+i;
+    }
 }
